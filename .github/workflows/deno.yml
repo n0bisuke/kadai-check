@@ -1,0 +1,33 @@
+name: 30分ごと
+
+on:
+  push:
+    branches: [ main ]
+#   schedule:
+#   - cron:  '21,51 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@master
+        - uses: denoland/setup-deno@v1
+          with:
+            deno-version: v1.x
+
+        # - run: deno run https://deno.land/std/examples/welcome.ts
+        
+        - name: run
+          run: deno run --allow-net --allow-read --allow-write --allow-env --allow-run --unstable ./main.ts
+
+        - name: git commit & push
+          run: |
+            git config core.filemode false
+            if ! git diff --exit-code --quiet
+            then
+                git add --update
+                git config user.name github-actions
+                git config user.email action@github.com
+                git commit -m "Commit by github-actions"
+                git push https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git HEAD:${{github.ref}}
+            fi
