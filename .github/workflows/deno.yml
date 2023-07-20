@@ -18,7 +18,7 @@ jobs:
         # - run: deno run https://deno.land/std/examples/welcome.ts
         
         - name: run
-          run: NOTION_TOKEN=${{ NOTION_TOKEN }} deno task start
+          run: NOTION_TOKEN=${{ env.NOTION_TOKEN }} deno task start
 
         - name: git commit & push
           run: |
