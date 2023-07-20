@@ -5,7 +5,7 @@ import { sleep } from "https://deno.land/x/sleep/mod.ts";
 
 const JP_NOW_TIME = datetime().toZonedTime("Asia/Tokyo").format("YYYY-MM-dd");
 
-console.log(JP_NOW_TIME)
+console.log(JP_NOW_TIME);
 
 // Initializing a client
 const notion = new Client({auth: Deno.env.get('NOTION_TOKEN') || ''});
@@ -21,7 +21,7 @@ const kadai_list = await notion.databases.query({
     ]
 })
 console.log(kadai_list.results.length)
-console.log(kadai_list.results[1].properties['title']?.title[0]);
+// console.log(kadai_list.results[1].properties['title']?.title[0]);
 
 const updateInfo = async (recordId, trueTitle) => {
     try {
@@ -76,11 +76,11 @@ kadai_list.results.filter(async kadai => {
     console.log(`---start: ${last_edited_time}`);
     //学生のタイトルミスがあった場合
     if(title !== trueTitle) {
-        console.log(`修正:`);
+        console.log(`タイトル修正をします。`);
         const res = await updateInfo(recordId, trueTitle);
-        console.log(res);
+        // console.log(res);
     }else{
-        console.log(`正しい: ${title}`)
+        console.log(`タイトル正常: ${title}`)
     }
 
     console.log(`---end: \n`);
