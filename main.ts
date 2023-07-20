@@ -3,8 +3,8 @@ import 'https://deno.land/std@0.192.0/dotenv/load.ts'
 import { datetime, diffInDays, diffInMin } from "https://deno.land/x/ptera/mod.ts";
 import { sleep } from "https://deno.land/x/sleep/mod.ts";
 
-const JP_NOW_TIME = datetime().toZonedTime("Asia/Tokyo").format("YYYY-MM-dd");
-
+// const JP_NOW_TIME = datetime().toZonedTime("Asia/Tokyo").format("YYYY-MM-dd");
+const JP_NOW_TIME = datetime().toZonedTime("Asia/Tokyo").toISO();
 console.log(JP_NOW_TIME);
 
 // Initializing a client
@@ -78,10 +78,18 @@ kadai_list.results.filter(async kadai => {
     if(title !== trueTitle) {
         console.log(`タイトル修正をします。`);
         const res = await updateInfo(recordId, trueTitle);
-        // console.log(res);
+        // console.log(res);        
     }else{
         console.log(`タイトル正常: ${title}`)
     }
 
     console.log(`---end: \n`);
 })
+
+const encoder = new TextEncoder();
+const contentBytes = encoder.encode(`${JP_NOW_TIME} 実行`);
+// 書き込みモードでファイルオープン
+const file = await Deno.open('log.txt', {write: true, create: true});
+Deno.writeAllSync(file, contentBytes);
+// ファイルを閉じる
+Deno.close(file.rid);
