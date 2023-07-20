@@ -16,7 +16,6 @@ jobs:
             deno-version: v1.x
 
         # - run: deno run https://deno.land/std/examples/welcome.ts
-        
         - name: run
           run: NOTION_TOKEN=${{ secrets.NOTION_TOKEN }} NOTION_KADAI_TEISYUTSU_DB_ID=${{ secrets.NOTION_KADAI_TEISYUTSU_DB_ID }} deno task start
 
