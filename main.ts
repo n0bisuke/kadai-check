@@ -6,7 +6,6 @@ import { sleep } from "https://deno.land/x/sleep/mod.ts";
 const JP_NOW_TIME = datetime().toZonedTime("Asia/Tokyo").format("YYYY-MM-dd");
 
 console.log(JP_NOW_TIME)
-
 // Initializing a client
 const notion = new Client({auth: Deno.env.get('NOTION_TOKEN') || ''});
 
