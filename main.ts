@@ -80,7 +80,8 @@ kadai_list.results.filter(async kadai => {
         const res = await updateInfo(recordId, trueTitle);
         // console.log(res);        
     }else{
-        console.log(`タイトル正常: ${title}`)
+        // console.log(`タイトル正常: ${title}`)
+        console.log(`タイトル正常:`)
     }
 
     console.log(`---end: \n`);
