@@ -3,6 +3,7 @@ import 'https://deno.land/std@0.192.0/dotenv/load.ts'
 import { datetime, diffInDays, diffInMin } from "https://deno.land/x/ptera/mod.ts";
 import { sleep } from "https://deno.land/x/sleep/mod.ts";
 
+
 // const JP_NOW_TIME = datetime().toZonedTime("Asia/Tokyo").format("YYYY-MM-dd");
 const JP_NOW_TIME = datetime().toZonedTime("Asia/Tokyo").toISO();
 console.log(JP_NOW_TIME);
@@ -23,7 +24,7 @@ const kadai_list = await notion.databases.query({
 console.log(kadai_list.results.length)
 // console.log(kadai_list.results[1].properties['title']?.title[0]);
 
-const updateInfo = async (recordId, trueTitle) => {
+const updateInfo = async (recordId:string , trueTitle:string ) => {
     try {
         //レコードのIDを指定して更新
         const response = await notion.pages.update({
@@ -77,7 +78,7 @@ kadai_list.results.filter(async kadai => {
     //学生のタイトルミスがあった場合
     if(title !== trueTitle) {
         console.log(`タイトル修正をします。`);
-        const res = await updateInfo(recordId, trueTitle);
+        // const res = await updateInfo(recordId, trueTitle);
         // console.log(res);        
     }else{
         // console.log(`タイトル正常: ${title}`)
