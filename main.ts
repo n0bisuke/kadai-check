@@ -78,10 +78,10 @@ kadai_list.results.filter(async kadai => {
     //学生のタイトルミスがあった場合
     if(title !== trueTitle) {
         console.log(`タイトル修正をします。`);
-        // const res = await updateInfo(recordId, trueTitle);
-        // console.log(res);        
+        const res = await updateInfo(recordId, trueTitle);
+        console.log(res);   
     }else{
-        // console.log(`タイトル正常: ${title}`)
+        // console.log(`タイトル正常: ${title} / ${trueTitle}`)
         console.log(`タイトル正常:`)
     }
 
