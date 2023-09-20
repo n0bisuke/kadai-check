@@ -1,5 +1,10 @@
 {
-  "version": "2",
+  "version": "3",
+  "redirects": {
+    "https://deno.land/x/notion_sdk/src/mod.ts": "https://deno.land/x/notion_sdk@v2.2.3/src/mod.ts",
+    "https://deno.land/x/ptera/mod.ts": "https://deno.land/x/ptera@v1.0.2/mod.ts",
+    "https://deno.land/x/sleep/mod.ts": "https://deno.land/x/sleep@v1.2.1/mod.ts"
+  },
   "remote": {
     "https://deno.land/std@0.192.0/collections/filter_values.ts": "5b9feaf17b9a6e5ffccdd36cf6f38fa4ffa94cff2602d381c2ad0c2a97929652",
     "https://deno.land/std@0.192.0/collections/without_all.ts": "a89f5da0b5830defed4f59666e188df411d8fece35a5f6ca69be6ca71a95c185",
